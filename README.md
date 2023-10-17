@@ -14,7 +14,7 @@ docker rmi container-registry.oracle.com/database/free
 
 docker pull gvenzl/oracle-free
 
-docker run -d -n oracle -p 1521:1521 -e ORACLE_PASSWORD=password -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-free
+docker run -d --name oracle -p 1521:1521 -e ORACLE_PASSWORD=password -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-free
 
 docker exec <container name|id> resetPassword <your password>
 
