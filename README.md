@@ -25,3 +25,8 @@ docker exec -it <container_name_or_id> /bin/bash
 sqlplus / as sysdba
 
 SELECT username FROM dba_users;
+
+## connection
+username: SYSTEM
+password: password
+Service Name: FREEPDB1
