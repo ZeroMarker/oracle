@@ -2,14 +2,15 @@
 
 docker pull container-registry.oracle.com/database/free
 
-docker stop my_oracle_db
+docker stop oracle
 
-docker run -d -it --name my_oracle_db --env="ORACLE_SID=DB" --env="ORACLE_PDB=PDB" --env="ORACLE_PWD=password" -p 1521:1521 container-registry.oracle.com/database/free
+docker run -d -it --name oracle --env="ORACLE_SID=DB" --env="ORACLE_PDB=PDB" --env="ORACLE_PWD=password" -p 1521:1521 container-registry.oracle.com/database/free
 
-docker rm my_oracle_db
+docker rm oracle
 
 docker rmi container-registry.oracle.com/database/free
---
+
+## gvenzl
 [Oracle Database 23c Free — Developer Release for Java Developers with Docker on Windows](https://medium.com/oracledevs/oracle-database-23c-free-developer-release-for-java-developers-with-docker-on-windows-b164a7a61a91)
 
 docker pull gvenzl/oracle-free
@@ -18,9 +19,9 @@ docker run -d --name oracle -p 1521:1521 -e ORACLE_PASSWORD=password -v oracle-v
 
 docker ps -a
 
-docker exec <container name|id> resetPassword <your password>
+docker exec oracle resetPassword password
 
-docker exec -it <container_name_or_id> /bin/bash
+docker exec -it oracle /bin/bash
 
 sqlplus / as sysdba
 
@@ -41,4 +42,14 @@ podman run --name <container name> \
 -v [<host mount point>:]/opt/oracle/oradata \
 container-registry.oracle.com/database/free:latest
 
+docker pull container-registry.oracle.com/database/free:latest
+
 docker run -d --name oracle -p 1521:1521 -e ORACLE_PASSWORD=password -v oracle-volume:/opt/oracle/oradata container-registry.oracle.com/database/free:latest
+
+### Changing the Default Password for SYS User
+docker exec oracle ./setPassword.sh Password
+
+username: SYS
+password: Password
+role: SYSDBA
+service name: FREE
