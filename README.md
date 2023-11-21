@@ -49,7 +49,12 @@ docker run -d --name oracle -p 1521:1521 -e ORACLE_PASSWORD=password -v oracle-v
 ### Changing the Default Password for SYS User
 docker exec oracle ./setPassword.sh Password
 
-username: SYS
+username: SYSTEM
 password: Password
 role: SYSDBA
+service name: FREE
+
+username: SYSTEM
+password: Password
+role: default
 service name: FREE
